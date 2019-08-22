@@ -14,22 +14,22 @@
             <li class="nav-sub-header"><a href="index.html"><span>Dashboard</span></a></li>
           </ul>
         </li>
-        <li class="active">
-          <a href="layouts.html"><i class="fa fa-object-group"></i><span>Layouts <small class="label label-success">Special</small></span></a>
+        <li>
+          <a href="#"><i class="fa fa-file-text"></i><span>Contracts</span></a>
           <ul class="nav nav-sub">
-            <li class="nav-sub-header"><a href="layouts.html"><span>Layouts</span></a></li>
+            <li class="nav-sub-header"><a href="#"><span>Contracts</span></a></li>
           </ul>
         </li>
         <li>
-          <a href="mailbox.html"><i class="fa fa-envelope-o"></i><span> Mailbox </span></a>
+          <a href="#"><i class="fa fa-credit-card"></i><span> Accounts </span></a>
           <ul class="nav nav-sub">
-            <li class="nav-sub-header"><a href="mailbox.html"><span>Mailbox</span></a></li>
+            <li class="nav-sub-header"><a href="#"><span>Accounts</span></a></li>
           </ul>
         </li>
         <li>
-          <a href="note.html"><i class="fa fa-file-text-o"></i><span> Notes <small class="label label-warning">Apps</small></span></a>
+          <a href="#"><i class="fa fa-list-alt"></i><span> Acts </span></a>
           <ul class="nav nav-sub">
-            <li class="nav-sub-header"><a href="note.html"><span>Notes</span></a></li>
+            <li class="nav-sub-header"><a href="#"><span>Acts</span></a></li>
           </ul>
         </li>
         <li>
