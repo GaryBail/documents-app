@@ -14,37 +14,27 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
+                        <th> Дата </th>
+                        <th> Сумма </th>
+                        <th> Статус </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Jane Doe</td>
-                        <td>Mosa</td>
-                        <td>@twitter</td>
+                    <tr v-for="act in $store.state.acts">
+                        <td> {{ act.id }} </td>
+                        <td> {{ act.data }} </td>
+                        <td> {{ act.amount }} </td>
+                        <td> {{ act.status }} </td>
+                        <td>
+                            <router-link v-bind:to="{name: 'act-form', params: {id: act.id}}">
+                                <div href="#myModal2" data-backdrop="static" data-keyboard="false" data-toggle="modal" class="btn btn-warning btn-sm">Редактировать</div>
+                            </router-link>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
+                <router-view    v-on:act-form-canceling="$router.push({name:'acts'})"
+                                v-on:act-form-submitted="actFormSubmitted"></router-view>
             </div>
         </section>
     </div>
@@ -52,7 +42,13 @@
 
 <script>
     export default {
-        name: "Acts"
+        name: "Acts",
+        methods: {
+            actFormSubmitted: function () {
+                this.$store.commit('updateActs', data);
+                this.$router.push({name: 'acts'})
+            }
+        }
     }
 </script>
 

@@ -6,68 +6,30 @@
                     <table class="table  table-hover general-table">
                         <thead>
                         <tr>
-                            <th> Company</th>
-                            <th class="hidden-phone">Descrition</th>
-                            <th>Profit</th>
-                            <th>Status</th>
+                            <th> № </th>
+                            <th> Номер договора </th>
+                            <th> Дата </th>
+                            <th> Тип </th>
+                            <th> Сумма </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td><a href="#">Graphics</a></td>
-                            <td class="hidden-phone">Lorem Ipsum dorolo imit</td>
-                            <td>1320.00$ </td>
-                            <td><span class="label label-info label-mini">Due</span></td>
-                        </tr>
-                        <tr>
+                        <tr v-for="contract in $store.state.contracts">
+                            <td> {{ contract.id }} </td>
+                            <td> {{ contract.number }} </td>
+                            <td> {{ contract.date }} </td>
+                            <td> {{ contract.type }} </td>
+                            <td><span class="label label-info label-mini"> {{ contract.amount }} </span></td>
                             <td>
-                                <a href="#">
-                                    ThemeBucket
-                                </a>
+                                <router-link v-bind:to="{name: 'contract-form', params: {id: contract.id}}">
+                                    <div href="#myModal2" data-backdrop="static" data-keyboard="false" data-toggle="modal" class="btn btn-warning btn-sm">Редактировать</div>
+                                </router-link>
                             </td>
-                            <td class="hidden-phone">Lorem Ipsum dorolo</td>
-                            <td>556.00$ </td>
-                            <td><span class="label label-warning label-mini">Due</span></td>
                         </tr>
-                        <tr>
-                            <td>
-                                <a href="#">
-                                    XYZ
-                                </a>
-                            </td>
-                            <td class="hidden-phone">Lorem Ipsum dorolo</td>
-                            <td>13240.00$ </td>
-                            <td><span class="label label-success label-mini">Paid</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#">
-                                    BCSE
-                                </a>
-                            </td>
-                            <td class="hidden-phone">Lorem Ipsum dorolo</td>
-                            <td>3455.50$ </td>
-                            <td><span class="label label-danger label-mini">Paid</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">AVC Ltd</a></td>
-                            <td class="hidden-phone">Lorem Ipsum dorolo imit</td>
-                            <td>110.00$ </td>
-                            <td><span class="label label-primary label-mini">Due</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#">
-                                    Themeforest
-                                </a>
-                            </td>
-                            <td class="hidden-phone">Lorem Ipsum dorolo</td>
-                            <td>456.00$ </td>
-                            <td><span class="label label-warning label-mini">Due</span></td>
-                        </tr>
-
                         </tbody>
                     </table>
+                    <router-view    v-on:contract-form-canceling="$router.push({name:'contracts'})"
+                                    v-on:contract-form-submitted="contractFormSubmitted"></router-view>
                 </div>
             </section>
         </div>
@@ -76,7 +38,13 @@
 
 <script>
     export default {
-        name: "Contracts"
+        name: "Contracts",
+        methods: {
+            contractFormSubmitted: function () {
+                this.$store.commit('updateContracts', data);
+                this.$router.push({name: 'contracts'})
+            }
+        }
     }
 </script>
 

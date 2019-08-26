@@ -14,19 +14,28 @@ export default new Router({
         component: Dashboard
       },
       {
-        path: '/contracts',
-        name: 'contracts',
-        component: () => import('./views/Contracts.vue')
+          path: '/contracts',
+          name: 'contracts',
+          component: () => import('./views/Contracts.vue'),
+          children: [
+              {name: 'contract-form', path: ':id/edit', component: () => import('./components/Contract-form.vue'), props: true}
+          ]
       },
       {
-        path: '/accounts',
-        name: 'accounts',
-        component: () => import('./views/Accounts.vue')
+          path: '/accounts',
+          name: 'accounts',
+          component: () => import('./views/Accounts.vue'),
+          children: [
+              {name: 'account-form', path: ':id/edit', component: () => import('./components/Account-form.vue'), props: true}
+          ]
       },
       {
           path: '/acts',
           name: 'acts',
-          component: () => import('./views/Acts.vue')
+          component: () => import('./views/Acts.vue'),
+          children: [
+              {name: 'act-form', path: ':id/edit', component: () => import('./components/Act-form.vue'), props: true}
+          ]
       }
   ]
 })

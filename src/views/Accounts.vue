@@ -13,38 +13,28 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th> # </th>
+                            <th> Дата </th>
+                            <th> Сумма </th>
+                            <th> Статус </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Jane Doe</td>
-                            <td>Mosa</td>
-                            <td>@twitter</td>
+                        <tr v-for="account in $store.state.accounts">
+                            <td> {{ account.id }} </td>
+                            <td> {{ account.date }} </td>
+                            <td> {{ account.amount }} </td>
+                            <td> {{ account.status }} </td>
+                            <td>
+                                <router-link v-bind:to="{name: 'account-form', params: {id: account.id}}">
+                                    <div href="#myModal2" data-backdrop="static" data-keyboard="false" data-toggle="modal" class="btn btn-warning btn-sm">Редактировать</div>
+                                </router-link>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
+                    <router-view    v-on:account-form-canceling="$router.push({name:'accounts'})"
+                                    v-on:account-form-submitted="accountFormSubmitted"></router-view>
                 </div>
             </section>
         </div>
@@ -52,7 +42,13 @@
 
 <script>
     export default {
-        name: "Accounts"
+        name: "Accounts",
+        methods: {
+            accountFormSubmitted: function () {
+                this.$store.commit('updateAccounts', data);
+                this.$router.push({name: 'accounts'})
+            }
+        }
     }
 </script>
 
