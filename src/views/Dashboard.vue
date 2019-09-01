@@ -1,46 +1,35 @@
 <template>
-    <div class="row">
-        <div class="col-md-6">
-              <div class="panel">
-                  <header class="panel-heading">
-                    Pie Chart
-                    <span class="tools pull-right">
-                        <a class="refresh-box fa fa-repeat" href="javascript:;"></a>
-                        <a class="collapse-box fa fa-chevron-down" href="javascript:;"></a>
-                        <a class="close-box fa fa-times" href="javascript:;"></a>
-                    </span>
-                  </header>
-                  <div class="panel-body">
-                      <div class="chartJS">
-                          <canvas id="pie-chart-js" height="250" width="800" ></canvas>
-                      </div>
-                  </div>
-              </div>
-        </div>
-        <div class="col-md-6">
-              <div class="panel">
-                    <header class="panel-heading">
-                      Donut Chart
-                      <span class="tools pull-right">
-                          <a class="refresh-box fa fa-repeat" href="javascript:;"></a>
-                          <a class="collapse-box fa fa-chevron-down" href="javascript:;"></a>
-                          <a class="close-box fa fa-times" href="javascript:;"></a>
-                      </span>
-                    </header>
-                    <div class="panel-body">
-                        <div class="chartJS">
-                            <canvas id="donut-chart-js" height="250" width="800" ></canvas>
-                        </div>
-                    </div>
-              </div>
-        </div>
-    </div>
+   <div class="home">
+       <table>
+           <tr>
+               <td>USD</td>
+               <td>EUR</td>
+               <tr>{{ usd }}</tr>
+               <tr>{{ eur }}</tr>
+           </tr>
+       </table>
+   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
 export default {
-  name: 'dashboard'
+  name: 'dashboard',
+    data: function () {
+      return {
+          usd: null,
+          eur: null
+      }
+    },
+    created: function () {
+      var url = 'https://www.cbr-xml-daily.ru/daily_json.js'
+        this.$http.get(url).then(response => {
+            this.usd = response.body.Valute.USD.Value;
+            this.eur = response.body.Valute.EUR.Value;
+        }, response => {
+
+        });
+    }
 }
 </script>

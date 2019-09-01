@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Dashboard from './views/Dashboard.vue'
+import Contracts from './views/Contracts.vue'
+import Accounts from './views/Accounts.vue'
+import Acts from './views/Acts.vue'
+
 
 Vue.use(Router)
 
@@ -15,26 +19,86 @@ export default new Router({
       },
       {
           path: '/contracts',
-          name: 'contracts',
-          component: () => import('./views/Contracts.vue'),
+          component: Contracts,
           children: [
-              {name: 'contract-form', path: ':id/edit', component: () => import('./components/Contract-form.vue'), props: true}
+              {
+                  path: '',
+                  name: 'contracts',
+                  component: () => import('./views/ContractsList.vue')
+              },
+              {
+                  path: ':id/edit',
+                  name: 'edit-contract',
+                  component: () => import('./views/ContractForm.vue'),
+                  props: true
+              },
+              {
+                  path: 'new',
+                  name: 'new-contract',
+                  component: () => import('./views/ContractForm.vue')
+              },
+              {
+                  path: ':id/delete',
+                  name: 'contract-delete',
+                  component: () => import('./views/ContractDelete.vue'),
+                  props: true
+              }
           ]
       },
       {
           path: '/accounts',
-          name: 'accounts',
-          component: () => import('./views/Accounts.vue'),
+          component: Accounts,
           children: [
-              {name: 'account-form', path: ':id/edit', component: () => import('./components/Account-form.vue'), props: true}
+              {
+                  path: '',
+                  name: 'accounts',
+                  component: () => import('./views/AccountsList.vue')
+              },
+              {
+                  path: ':id/edit',
+                  name: 'edit-accounts',
+                  component: () => import('./views/AccountsForm.vue'),
+                  props: true
+              },
+              {
+                  path: 'new',
+                  name: 'new-accounts',
+                  component: () => import('./views/AccountsForm.vue')
+              },
+              {
+                  path: ':id/delete',
+                  name: 'accounts-delete',
+                  component: () => import('./views/AccountsDelete.vue'),
+                  props: true
+              }
           ]
       },
       {
           path: '/acts',
-          name: 'acts',
-          component: () => import('./views/Acts.vue'),
+          component: Acts,
           children: [
-              {name: 'act-form', path: ':id/edit', component: () => import('./components/Act-form.vue'), props: true}
+              {
+                  path: '',
+                  name: 'acts',
+                  component: () => import('./views/ActsList.vue')
+              },
+              {
+                  path: ':id/edit',
+                  name: 'edit-act',
+                  component: () => import('./views/ActForm.vue'),
+                  props: true
+              },
+              {
+                  path: 'new',
+                  name: 'new-act',
+                  component: () => import('./views/ActForm.vue')
+              },
+              {
+                  path: ':id/delete',
+                  name: 'act-delete',
+                  component: () => import('./views/ActForm.vue'),
+                  props: true
+              },
           ]
       }
   ]
