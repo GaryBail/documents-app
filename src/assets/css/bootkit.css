@@ -902,6 +902,11 @@ a:hover, a:focus, a:active {
 /*--------------------------------------------
 Search
  ---------------------------------------------*/
+.search-wrapper {
+    float: left;
+    margin-top: 8px;
+    position: relative;
+}
 
 .search-box{
     display: flex;
@@ -918,10 +923,9 @@ Search
 
 .search-btn{
     color: rgba(152,167,154,0.98);
-    width: 40px;
-    height: 40px;
+    padding: 5px;
     float: right;
-    border-radius: 100%;
+    border-radius: 50%;
     background: #eaeef3;
     display: flex;
     justify-content: center;
@@ -942,7 +946,7 @@ Search
     font-size: 16px;
     transition: 0.4s;
     line-height: 40px;
-    width: 0px;
+    width: 0;
     font-weight: bold;
 }
 

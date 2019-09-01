@@ -32,7 +32,7 @@
             <!-- toggle buttons end -->
 
             <!--search start-->
-            <form class="search-content hidden-xs" action="">
+            <form class="search-wrapper">
                 <div class="search-box">
                     <input class="search-txt" type="text" placeholder="Type to search">
                     <a class="search-btn" href="#">

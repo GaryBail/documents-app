@@ -1,35 +1,52 @@
 <template>
-   <div class="home">
-       <table>
-           <tr>
-               <td>USD</td>
-               <td>EUR</td>
-               <tr>{{ usd }}</tr>
-               <tr>{{ eur }}</tr>
-           </tr>
-       </table>
-   </div>
+    <div class="wrapper">
+        <vc-donut
+                background="white" foreground="grey"
+                :size="200" unit="px" :thickness="30"
+                has-legend legend-placement="top"
+                :sections="sections" :total="100"
+                :start-angle="0"
+                @section-click="handleSectionClick">
+            <h1>100%</h1>
+        </vc-donut>
+        <vc-donut
+                background="white" foreground="grey"
+                :size="200" unit="px" :thickness="30"
+                has-legend legend-placement="top"
+                :sections="sections" :total="100"
+                :start-angle="0"
+                @section-click="handleSectionClick">
+            <h1>100%</h1>
+        </vc-donut>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
 
 export default {
   name: 'dashboard',
-    data: function () {
-      return {
-          usd: null,
-          eur: null
-      }
+    data() {
+        return {
+            sections: [
+                { label: 'Red section', value: 25, color: 'red' },
+                { label: 'Green section', value: 25, color: 'green' },
+                { label: 'Blue section', value: 25, color: 'blue' }
+            ]
+        };
     },
-    created: function () {
-      var url = 'https://www.cbr-xml-daily.ru/daily_json.js'
-        this.$http.get(url).then(response => {
-            this.usd = response.body.Valute.USD.Value;
-            this.eur = response.body.Valute.EUR.Value;
-        }, response => {
-
-        });
+    methods: {
+        handleSectionClick(section) {
+            console.log(`${section.label} clicked.`);
+        }
     }
 }
 </script>
+
+<style scoped>
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+</style>
