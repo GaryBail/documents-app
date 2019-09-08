@@ -11,6 +11,7 @@
                         <th> # </th>
                         <th> Дата </th>
                         <th> Сумма </th>
+                        <th> Договор </th>
                         <th> Статус </th>
                     </tr>
                     </thead>
@@ -19,8 +20,8 @@
                         <td> {{ account.id }} </td>
                         <td> {{ account.date }} </td>
                         <td> {{ account.amount }} </td>
-                        <td> {{ account.status }} </td>
-                        <td> # </td>
+                        <td> {{ contractName(account.contract_id) }} </td>
+                        <td> {{ accountsStatus(account.status_id) }} </td>
                         <td>
                             <router-link v-bind:to="{name: 'edit-accounts', params: {id: account.id}}">
                                 <div class="btn btn-warning btn-sm">Редактировать</div>
@@ -37,7 +38,21 @@
 
 <script>
     export default {
-        name: "AccountsList"
+        name: "AccountsList",
+        methods: {
+            accountsStatus: function (status_id) {
+                var status = this.$store.state.statuses.find(el => el.id == status_id);
+                if (status) {
+                    return status.full_name
+                } else {
+                    return 'Введите статус счета!'
+                }
+            },
+            contractName: function (contract_id) {
+                var contract = this.$store.state.contracts.find(el => el.id == contract_id);
+                return `Договор №${contract.number} от ${contract.date}`
+            }
+        }
     }
 </script>
 

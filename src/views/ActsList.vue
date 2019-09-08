@@ -11,8 +11,9 @@
                     <th>#</th>
                     <th> Дата </th>
                     <th> Сумма </th>
+                    <th> Договор </th>
                     <th> Статус </th>
-                    <th> # </th>
+                    <th>  </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -20,7 +21,8 @@
                 <td> {{ act.id }} </td>
                 <td> {{ act.date }} </td>
                 <td> {{ act.amount }} </td>
-                <td> {{ act.status }} </td>
+                <td> {{ contractName(act.contract_id) }} </td>
+                <td> {{ actConditions(act.condition_id) }}</td>
                 <td>
                     <router-link :to="{name: 'edit-act', params: {id: act.id}}">
                         <div class="btn btn-warning btn-sm">Редактировать</div>
@@ -37,7 +39,21 @@
 
 <script>
     export default {
-        name: "ActsList"
+        name: "ActsList",
+        methods: {
+            actConditions: function (condition_id) {
+                var condition = this.$store.state.conditions.find(el => el.id == condition_id);
+                if (condition) {
+                    return condition.full_name
+                } else {
+                    return 'Укажите состояние статуса!'
+                }
+            },
+            contractName: function (contract_id) {
+                var contract = this.$store.state.contracts.find(el => el.id == contract_id);
+                return `Договор №${contract.number} от ${contract.date}`
+            }
+        }
     }
 </script>
 

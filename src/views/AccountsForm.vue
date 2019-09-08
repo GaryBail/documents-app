@@ -4,10 +4,13 @@
             <input type="date" v-model="date" class="form-control">
         <label>Сумма: </label>
             <input type="number" v-model="amount" class="form-control">
+        <label> Договор: </label>
+        <select type="text" v-model="contract_id" class="form-control">
+            <option v-for="contract in $store.state.contracts" v-bind:value="contract.id"> {{ `Договор №${contract.number} от ${contract.date}` }} </option>
+        </select>
         <label> Статус: </label>
-            <select type="text" v-model="status" class="form-control">
-                <option> не оплачен </option>
-                <option> оплачен </option>
+            <select type="text" v-model="status_id" class="form-control">
+                <option v-for="status in $store.state.statuses" v-bind:value="status.id"> {{ status.full_name }} </option>
             </select>
         <div class="modal-footer">
             <button v-on:click="submitFormClicked" class="btn btn-success">Сохранить</button>
@@ -24,7 +27,8 @@
             return {
                 date: null,
                 amount: null,
-                status: null
+                status_id: null,
+                contract_id: null
             }
         },
         created: function () {
@@ -32,15 +36,16 @@
         },
         methods: {
             fillForm: function () {
-                var account = this.$store.state.accounts.find(account => account.id === this.id);
+                var account = this.$store.getters.accounts(this.id);
                 if (account) {
                     this.date = account.date;
                     this.amount = account.amount;
-                    this.status = account.status
+                    this.status_id = account.status_id;
+                    this.contract_id = account.contract_id
                 }
             },
             submitFormClicked: function () {
-                this.$emit('account-form-submitted', {id: this.id, date: this.date, amount: this.amount, status: this.status})
+                this.$emit('account-form-submitted', {id: this.id, date: this.date, amount: this.amount, contract_id: this.contract_id, status_id: this.status_id})
             }
         }
     }

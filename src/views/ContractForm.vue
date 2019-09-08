@@ -5,9 +5,8 @@
             <label> Дата: </label>
             <input type="date" v-model="date" class="form-control">
             <label> Тип: </label>
-            <select type="text" v-model="type" class="form-control">
-                <option> оказания услуг </option>
-                <option> подряда </option>
+            <select type="text" v-model="type_id" class="form-control">
+                <option v-for="type in $store.state.types" v-bind:value="type.id"> {{ type.full_name }} </option>
             </select>
             <label> Сумма: </label>
             <input type="number" v-model="amount" class="form-control">
@@ -26,7 +25,7 @@
             return {
                 number: null,
                 date: null,
-                type: null,
+                type_id: null,
                 amount: null
             }
         },
@@ -35,16 +34,16 @@
         },
         methods: {
             fillForm: function () {
-                var contract = this.$store.state.contracts.find(contract => contract.id === this.id);
+                var contract = this.$store.getters.contract(this.id);
                 if (contract) {
                     this.number = contract.number;
                     this.date = contract.date;
-                    this.type = contract.type;
+                    this.type_id = contract.type_id;
                     this.amount = contract.amount
                 }
             },
             submitFormClicked: function () {
-                this.$emit('contract-form-submitted', {id: this.id, number: this.number, date: this.date, type: this.type, amount: this.amount})
+                this.$emit('contract-form-submitted', {id: this.id, number: this.number, date: this.date, type_id: this.type_id, amount: this.amount})
             }
         }
     }

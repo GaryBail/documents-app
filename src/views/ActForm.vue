@@ -4,10 +4,13 @@
             <input type="date" v-model="date" class="form-control">
         <label>Сумма: </label>
             <input type="number" v-model="amount" class="form-control">
+        <label> Договор: </label>
+        <select type="text" v-model="contract_id" class="form-control">
+            <option v-for="contract in $store.state.contracts" v-bind:value="contract.id"> {{ `Договор №${contract.number} от ${contract.date}` }} </option>
+        </select>
         <label> Статус: </label>
-            <select type="text" v-model="status" class="form-control">
-                <option> не подписан </option>
-                <option> подписан </option>
+            <select type="text" v-model="condition_id" class="form-control">
+                <option v-for="condition in $store.state.conditions" v-bind:value="condition.id"> {{ condition.full_name }} </option>
             </select>
         <div class="modal-footer">
             <button v-on:click="submitFormClicked" class="btn btn-primary"> Сохранить </button>
@@ -24,7 +27,8 @@
             return {
                 date: null,
                 amount: null,
-                status: null
+                contract_id: null,
+                condition_id: null
             }
         },
         created: function () {
@@ -32,15 +36,16 @@
         },
         methods: {
             fillForm: function () {
-                var act = this.$store.state.contracts.find(act => act.id === this.id);
+                var act = this.$store.getters.act(this.id);
                 if (act) {
                     this.date = act.date;
                     this.amount = act.amount;
-                    this.status = act.status
+                    this.contract_id = act.contract_id;
+                    this.condition_id = act.condition_id
                 }
             },
             submitFormClicked: function () {
-                this.$emit('act-form-submitted', {id: this.id, date: this.date, amount: this.amount, status: this.status})
+                this.$emit('act-form-submitted', {id: this.id, date: this.date, amount: this.amount, contract_id: this.contract_id, condition_id: this.condition_id})
             }
         }
     }

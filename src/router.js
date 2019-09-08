@@ -96,7 +96,7 @@ export default new Router({
               {
                   path: ':id/delete',
                   name: 'act-delete',
-                  component: () => import('./views/ActForm.vue'),
+                  component: () => import('./views/ActDelete.vue'),
                   props: true
               },
           ]
