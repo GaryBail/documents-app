@@ -12,7 +12,7 @@
             <input type="number" v-model="amount" class="form-control">
             <div class="modal-footer">
                 <button v-on:click="submitFormClicked" type="button" class="btn btn-success">Сохранить</button>
-                <button v-on:click="$emit('contract-form-canceling')" type="button" class="btn btn-default btn-danger">Закрыть</button>
+                <button v-on:click="$emit('contract-form-canceling')" type="button" class="btn btn-danger">Закрыть</button>
             </div>
         </div>
 </template>

@@ -225,5 +225,6 @@
 <style scoped>
     .title__body {
         text-align: center;
+        text-shadow: black 1px 1px;
     }
 </style>

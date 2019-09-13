@@ -2,7 +2,7 @@
     <div>
         <div>
         <router-link :to="{name:'new-contract', params: {id: $store.state.contracts.id}}">
-            <button type="button" class="btn btn-success">Добавить</button>
+            <button type="button" class="btn btn-success button-style btn-add">Добавить</button>
         </router-link>
         </div>
             <table class="table  table-hover general-table">
@@ -32,10 +32,10 @@
                     <td> {{ $store.getters.conditionContract(contract.id) }} </td>
                     <td>
                         <router-link :to="{name: 'edit-contract', params: {id: contract.id}}">
-                            <div class="btn btn-warning btn-sm">Редактировать</div>
+                            <div ripple="ripple" class="btn btn-warning btn-sl button-style">Редактировать</div>
                         </router-link>
                         <router-link :to="{name:'contract-delete', params:{id:contract.id}}">
-                            <div class="btn btn-danger btn-sm">Удалить</div>
+                            <div ripple="ripple" class="btn btn-danger btn-sl button-style">Удалить</div>
                         </router-link>
                     </td>
                 </tr>

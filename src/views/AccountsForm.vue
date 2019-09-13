@@ -14,7 +14,7 @@
             </select>
         <div class="modal-footer">
             <button v-on:click="submitFormClicked" class="btn btn-success">Сохранить</button>
-            <button v-on:click="$emit('account-form-canceling')" class="btn btn-default btn-danger">Закрыть</button>
+            <button v-on:click="$emit('account-form-canceling')" class="btn btn-danger">Закрыть</button>
         </div>
     </div>
 </template>

@@ -1536,6 +1536,25 @@ Components
     border-top: none !important; }
 
 /*--------------------------------------------
+Style buttons
+----------------------------------------------*/
+
+.button-style {
+    margin: 5px;
+    padding: 10px 20px;
+}
+
+.btn-add {
+    float: right;
+}
+
+.btn-add:hover {
+    width: 200px;
+    opacity: 0.5;
+}
+
+
+/*--------------------------------------------
 Right side Widget
 ----------------------------------------------*/
 .aside-widget {

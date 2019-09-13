@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="wrapper">
-            <vc-donut
+            <vc-donut class="donut"
                     background="white" foreground="grey"
                     :size="200" unit="px" :thickness="30"
                     has-legend legend-placement="top"
@@ -10,7 +10,7 @@
                     @section-click="contractsStatusSectionsClick">
                 <h2> {{ `${Math.round(status)}%` }} </h2>
             </vc-donut>
-            <vc-donut
+            <vc-donut class="donut"
                     background="white" foreground="grey"
                     :size="200" unit="px" :thickness="30"
                     has-legend legend-placement="top"
@@ -20,7 +20,7 @@
                 <h2> {{ `${Math.round(condition)}%` }} </h2>
             </vc-donut>
         </div>
-        <h2 class="dashboard-text"> Для отображения доли каждого из параметров нажмите на цветовое поле круговой диаграммы </h2>
+        <h2 class="dashboard-text"> Для отображения доли каждого из параметров нажмите на цветовой индикатор круговой диаграммы </h2>
     </div>
 </template>
 
@@ -80,6 +80,10 @@ export default {
     .wrapper {
         display: flex;
         justify-content: center;
+    }
+
+    .donut {
+        margin: 0 100px;
     }
 
     .dashboard-text {

@@ -5,9 +5,11 @@ import store from './store'
 import './assets/css/common.scss'
 import VueResource from 'vue-resource';
 import Donut from 'vue-css-donut-chart';
+import VueRippler from 'vue-rippler'
 
 Vue.use(VueResource);
 Vue.use(Donut);
+Vue.use(VueRippler);
 
 
 
